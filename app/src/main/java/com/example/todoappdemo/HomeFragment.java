@@ -1,7 +1,5 @@
 package com.example.todoappdemo;
 
-import static androidx.appcompat.content.res.AppCompatResources.getDrawable;
-
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -98,7 +96,6 @@ public class HomeFragment extends Fragment {
                             if (Objects.equals(task.getDate(), today)) {
                                 hasTasksForToday = true;
 
-                                Log.d("HomeFragment", "hasTasksForToday" + hasTasksForToday);
                                 String bgColor = task.getBackgroundColor();
                                 String timeDate = task.getDate() + " - " + task.getTime();
                                 if (Objects.equals(task.getTime(), "0:0")) {
