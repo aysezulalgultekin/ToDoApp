@@ -36,6 +36,7 @@ public class HomeFragment extends Fragment {
     private ProgressBar progressBar;
     private ImageView checkBunny;
     private final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("tasks");
+    private final DatabaseReference userDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
     private final boolean isChecked = false;
     private TextView tvCompletedTasks, tvLevel, tvRabbitMood;
     private final int userLevel = 0;
@@ -45,7 +46,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        DatabaseReference userDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         tasksContainer = view.findViewById(R.id.ll_task_container);
         completedTaskContainer = view.findViewById(R.id.ll_completed_task_container);
@@ -213,34 +213,63 @@ public class HomeFragment extends Fragment {
     private void updateTaskStatusInDatabase(String taskId, boolean isChecked) {
         DatabaseReference taskRef = databaseReference.child(taskId);
         taskRef.child("completed").setValue(isChecked)
-                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Task status updated successfully"))
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("Firebase", "Task status updated successfully");
+                    if (isChecked) {
+                        updateLevelBasedOnCompletedTasks();
+                    }
+                })
                 .addOnFailureListener(e -> Log.e("Firebase", "Failed to update task status", e));
     }
-    public void getUserLevel(String userId) {
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-        DatabaseReference userRef = usersRef.child(userId);
+    private void updateLevelBasedOnCompletedTasks() {
+        String userId = Objects.requireNonNull(SessionManager.getCurrentUser()).getUserId();
 
-        userRef.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int completedTaskCount = 0;
+
+                for (DataSnapshot taskSnapshot : snapshot.getChildren()) {
+                    Boolean isCompleted = taskSnapshot.child("completed").getValue(Boolean.class);
+                    if (isCompleted != null && isCompleted) {
+                        completedTaskCount++;
+                    }
+                }
+                updateUserLevelBasedOnTasks(userId, completedTaskCount);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Failed to fetch tasks: " + error.getMessage());
+            }
+        });
+    }
+
+    private void updateUserLevelBasedOnTasks(String userId, int completedTaskCount) {
+        userDatabaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     Integer levelInteger = snapshot.child("level").getValue(Integer.class);
+                    int level = Objects.requireNonNullElse(levelInteger, 0);
 
-                    if (levelInteger != null) {
-                        int level = levelInteger;
-                        Log.d("Firebase", "User level: " + level);
-                        progressBar.setProgress(level);
-                    } else {
-                        Log.w("Firebase", "User level is null or doesn't exist.");
-                    }
-                } else {
-                    Log.w("Firebase", "User does not exist.");
+                    int newLevel = level + (completedTaskCount / 20);
+                    int remainingTasks = completedTaskCount % 20;
+
+                    userDatabaseReference.child(userId).child("level").setValue(newLevel);
+                    Log.d("Firebase", "User level updated to: " + newLevel);
+
+                    Log.d("Firebase", "Tasks remaining for next level: " + (20 - remainingTasks));
+
+                    progressBar.setProgress(newLevel);
+                    String lvl = "lvl " + newLevel;
+                    tvLevel.setText(lvl);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Firebase", "Failed to read value: " + error.getMessage());
+                Log.e("Firebase", "Failed to update user level: " + error.getMessage());
             }
         });
     }
@@ -302,7 +331,13 @@ public class HomeFragment extends Fragment {
         else checkBunny.setImageDrawable(getResources().getDrawable(R.drawable.sad_bunny_home));
     }
 
-    //check bunny
+    private void updateLevel(int level){
+        String userId = Objects.requireNonNull(SessionManager.getCurrentUser()).getUserId();
+        userDatabaseReference.child(userId).setValue(level)
+                .addOnSuccessListener(aVoid -> Log.d("Firebase", "Level status updated successfully"))
+                .addOnFailureListener(e -> Log.e("Firebase", "Failed to update level status", e));
+    }
+
     //profile
     //onboarding images
 }
