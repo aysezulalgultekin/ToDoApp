@@ -46,13 +46,7 @@ public class RabbitFragment extends Fragment {
                         totalTasks++;
                         Boolean isChecked = taskSnapshot.child("completed").getValue(Boolean.class);
                         if (isChecked != null && isChecked) {
-                            Integer levelInteger = snapshot.child("level").getValue(Integer.class);
                             completedTasks++;
-                            if (levelInteger != null) {
-                                int level = levelInteger;
-                                level++;
-                                userRef.child("level").setValue(level);
-                            }
                         }
                     }
                 }

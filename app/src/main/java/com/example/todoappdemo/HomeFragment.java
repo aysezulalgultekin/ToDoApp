@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        DatabaseReference userDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         tasksContainer = view.findViewById(R.id.ll_task_container);
         completedTaskContainer = view.findViewById(R.id.ll_completed_task_container);
@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
         updateRabbitMood();
 
         String userId = Objects.requireNonNull(SessionManager.getCurrentUser()).getUserId();
-        databaseReference.child(userId).get()
+        userDatabaseReference.child(userId).get()
                 .addOnCompleteListener(databaseTask -> {
                     if (databaseTask.isSuccessful() && databaseTask.getResult().exists()) {
                         Integer levelInteger = databaseTask.getResult().child("level").getValue(Integer.class);
