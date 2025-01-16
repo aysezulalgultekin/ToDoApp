@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.todoappdemo.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_addTaskFragment_pop"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_in"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.todoappdemo.AddTaskFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_pop"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_in"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.todoappdemo.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_pop"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_in"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.todoappdemo.CalendarFragment"
+        android:label="Calendar"
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendarFragment_pop"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_in"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/rabbitFragment"
+        android:name="com.example.todoappdemo.RabbitFragment"
+        android:label="Rabbit"
+        tools:layout="@layout/fragment_rabbit" >
+        <action
+            android:id="@+id/action_rabbitFragment_pop"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_in"
+            app:popEnterAnim="@anim/fade_out"
+            app:popExitAnim="@anim/fade_in"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>

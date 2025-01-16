@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.todoappdemo.LoginActivity">
+    <item
+        android:id="@+id/rabbitFragment"
+        android:icon="@drawable/menu_item_rabbit_selector"
+        android:title="@string/menu_friend"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/menu_item_home_selector"
+        android:title="@string/menu_home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/menu_item_calendar_selector"
+        android:title="@string/menu_calendar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/rounded_apps_24"
+        android:title="@string/menu_settings"
+        app:showAsAction="ifRoom"/>
+
+</menu>

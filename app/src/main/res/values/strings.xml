@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">ToDoAppDemo</string>
+    <string name="default_long_text">dqpyclndnrxlydireebqnykbunruynagktgwgkegftzsqsaoszwqdodlr
+        fjgonuptlticjpeuggykirumbtheqtvfpopojkegxkxnoamxgpexpcpooytbsxxxknanscobpvehkmdzkuypwahivqop
+        rinmxbtaqqgsmhcjlgwothhrcccfrwvzfubxfqymizgjgdgsqlbokmpblqbmmuehghntsgtimocuhdnngzvgocxshvvx
+        dalcoijyqakcmxugvqqnyaqedpammmdmchmbkqfzakxthakzqjzlenczavlyxxgacrsatnvtcqivmxvgvruxemfoftov
+        dajqoyqnxfanyggidvjxveeqpnqqaasuxzgwutnsrcykwpofdtycnwfecxqhcyavurvaoinxlqfgrdmuwqccbafwvcle
+        jsptlllwoofeebjcdiztpilemxwtpchxvhpgeoqnmamhyyvxpvoqtpmsepiuytmrlxlqbmvtwnzwqbzugitaswiurvju
+        ldkhqilsudkfjyxwurwjsttzmfsxdcrmzctbhmefvsyahrsuafepfdkhkbswcflyfpwbtsnmqdrxccasdfxjtwnjdvam
+        snnojbctnidfldzqmgpgywdyurpprtthzslbbdziraebsfwxdotaiqcjxkufyekspsgpfixndyghwhfzllbjkbaeegip
+        eqoegoouxhjhdcifobciuhzqduppeazasypvcnvmmjuamkimctaouvawmayqbqavgfhertcruvrlrqawpimuffpenftf
+        takufgappwlkwqndbznakipyojvglqigotibesnufdvuogecftjdtetilpegqypmkmyzwpctfmocrczftearevgmajvs
+        bqwzsqoxtvzqmaoceoynzsbtrqnvhzuvmtlfqppwwrrjslzaawczfguuxpehaniyrwdrkimouldpibxobwxshcfxfzapuvzzfxhumyynjmuvybdlehx</string>
+    <string name="menu_settings">Profıle</string>
+    <string name="menu_friend">Friend</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_calendar">Calendar</string>
+    <string name="welcoming_text">Welcome</string>
+    <string name="check_kitty">Check Kitty</string>
+    <string name="check_day">Day Check</string>
+    <string name="daily_tasks">Daily Tasks</string>
+    <string name="completed_tasks">Completed Tasks</string>
+    <string name="add_task">Add Task</string>
+    <string name="no_task">No Task Yet</string>
+    <string name="type_something">Type Something…</string>
+    <string name="user_name">Default Name,</string>
+    <string name="time_text">Default Time</string>
+    <string name="lvl_text">lvl 0</string>
+    <string name="next_month">Month</string>
+    <string name="previous_month">Month</string>
+    <string name="month">January</string>
+    <string name="day">Monday</string>
+    <string name="task_time">Time</string>
+    <string name="task_date">Date, Time</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_repeat">Repeat</string>
+    <string name="task_tags">Tags</string>
+    <string name="date">Date</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cansel</string>
+    <string name="repeat">Repeat</string>
+    <string name="all_day">All Day</string>
+    <string name="select_time">Select Time</string>
+    <string name="today">Today</string>
+    <string name="no_repeat">No</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="users_name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="todo">TODO</string>
+    <string name="warning_text">Default warning text.</string>
+    <string name="no_registration">Enter without registration</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter">Enter</string>
+    <string name="password_requirements">Password should be min 6 characters, and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.</string>
+    <string name="email_requirements">Invalid email address!</string>
+    <string name="email_or_password_is_empty">Email and password needed!</string>
+    <string name="user_collusion">This email is already registered!</string>
+    <string name="enter_email_address">Please enter your email address!</string>
+    <string name="enter_name">Enter a name for your bunny friend!</string>"
+    <string name="enter_pet_name">Please give a name to your friend!</string>
+    <string name="fill_all_fields">Please fill all fields!</string>
+    <string name="user_not_found">User not found!</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="new_account">New Account</string>
+    <string name="login_headline_title">Begin the\nJourney!</string>
+    <string name="add_hashtag">Add Hashtag</string>
+    <string name="sunday">SUN</string>
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THUR</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="bunny_name">Bunny</string>
+    <string name="happy_bunny"> is Happy!</string>
+    <string name="normal_bunny"> is Okay :/</string>
+    <string name="sad_bunny"> is Sad :(</string>
+    <string name="bunny_name_error">Please enter a name!</string>
+
+</resources>

@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.ToDoAppDemo" parent="Theme.AppCompat.DayNight.NoActionBar" />
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ToDoAppDemo" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="RadioButtonStyle">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:button">@drawable/rb_button_selector</item>
+        <item name="buttonTint">@color/dark_blue</item>
+        <item name="android:background">@drawable/rb_selector</item>
+        <item name="android:backgroundTintMode">multiply</item>
+    </style>
+
+    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="CalenderViewCustom" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/dark_blue</item>
+        <item name="android:textColorPrimary">@color/dark_blue</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+
+    <style name="CalenderViewDateCustomText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@drawable/calender_date_selector</item>
+    </style>
+
+    <style name="CustomCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_selector</item>
+        <item name="buttonTint">@null</item>
+    </style>
+
+</resources>

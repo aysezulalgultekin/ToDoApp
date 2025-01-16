@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="main_purple">#e5d5ea</color>
+    <color name="main_blue">#d8e7f0</color>
+    <color name="dark_blue">#3d4c55</color>
+    <color name="coin_background">#eee8a9</color>
+    <color name="coin_text_color">#fec45c</color>
+    <color name="light_green">#ebfaea</color>
+    <color name="light_red">#F5EDF5</color>
+    <color name="light_blue">#ECF6FB</color>
+    <color name="light_yellow">#FBF8E4</color>
+    <color name="light_orange">#FFF1E9</color>
+    <color name="light_purple">#F8F2FF</color>
+    <color name="light_aqua">#eafaf8</color>
+    <color name="light_gray">#F1F1F1</color>
+    <color name="login_gray">#F0F0F0</color>
+    <color name="login_bg">#94D3E4</color>
+    <color name="orange">#F39B7F</color>
+    <color name="login_yellow">#FDF0E5</color>
+</resources>
