@@ -12,7 +12,7 @@ import java.util.List;
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.DayViewHolder> {
     private final List<String> days;
     private final OnDayClickListener onDayClickListener;
-    private int selectedPosition = -1;
+    private int selectedPosition = 0;
 
     public CalendarAdapter(List<String> days, OnDayClickListener onDayClickListener) {
         this.days = days;

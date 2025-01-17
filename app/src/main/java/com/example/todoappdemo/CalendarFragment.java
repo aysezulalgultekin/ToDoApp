@@ -86,8 +86,15 @@ public class CalendarFragment extends Fragment {
         CalendarAdapter calendarAdapter = new CalendarAdapter(days, this::onDaySelected);
         calendarRecyclerView.setAdapter(calendarAdapter);
 
-        if (selectedDay != null) {
-            int selectedDayPosition = days.indexOf(selectedDay);
+        Calendar today = Calendar.getInstance();
+        int currentDay = today.get(Calendar.DAY_OF_MONTH);
+
+        if (selectedDay == null) {
+            selectedDay = String.valueOf(currentDay);
+        }
+
+        int selectedDayPosition = days.indexOf(selectedDay);
+        if (selectedDayPosition != -1) {
             calendarAdapter.setSelectedPosition(selectedDayPosition);
             loadTasksForDay(selectedDay);
         } else {
