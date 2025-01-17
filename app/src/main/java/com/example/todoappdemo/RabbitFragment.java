@@ -1,9 +1,11 @@
 package com.example.todoappdemo;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +45,7 @@ public class RabbitFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_rabbit, container, false);
 
         levelTextView = view.findViewById(R.id.tv_lvl);
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
         String userId = Objects.requireNonNull(SessionManager.getCurrentUser()).getUserId();
         userDatabaseReference.child(userId).get()
@@ -52,6 +57,7 @@ public class RabbitFragment extends Fragment {
                         objRecyclerView(view, userLevel);
                         String lvl = "lvl " + userLevel;
                         levelTextView.setText(lvl);
+                        progressBar.setProgress(userLevel);
                         Log.d("Firebase", "User level: " + userLevel + "userId: " + userId);
                     } else {
                         Log.w("Firebase", "User does not exist.");
@@ -251,5 +257,31 @@ public class RabbitFragment extends Fragment {
         }
     }
 
+    private void playLevelUpAnimation(LottieAnimationView animationView, int userLevel, int newLevel) {
+        animationView.setVisibility(View.VISIBLE);
+        animationView.playAnimation();
+
+        animationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(@NonNull Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(@NonNull Animator animation) {
+                animationView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(@NonNull Animator animation) {
+                animationView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(@NonNull Animator animation) {
+
+            }
+        });
+    }
 }
 

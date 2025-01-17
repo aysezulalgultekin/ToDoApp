@@ -104,4 +104,5 @@
             android:padding="8dp"
             android:scrollbars="none" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
