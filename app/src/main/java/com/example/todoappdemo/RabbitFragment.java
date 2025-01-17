@@ -5,30 +5,124 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
 public class RabbitFragment extends Fragment {
     private final DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("tasks");
+    private final DatabaseReference userDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
+    private RecyclerView recyclerView;
+    private List<Item> allItems;
+    private List<Item> userItems;
+    private TextView levelTextView;
+    private int userLevel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rabbit, container, false);
-        updateRabbitImage(view);
+
+        levelTextView = view.findViewById(R.id.tv_lvl);
+
+        String userId = Objects.requireNonNull(SessionManager.getCurrentUser()).getUserId();
+        userDatabaseReference.child(userId).get()
+                .addOnCompleteListener(databaseTask -> {
+                    if (databaseTask.isSuccessful() && databaseTask.getResult().exists()) {
+                        Integer levelInteger = databaseTask.getResult().child("level").getValue(Integer.class);
+                        userLevel = Objects.requireNonNullElse(levelInteger, 0);
+                        updateRabbitImage(view, userLevel);
+                        objRecyclerView(view, userLevel);
+                        String lvl = "lvl " + userLevel;
+                        levelTextView.setText(lvl);
+                        Log.d("Firebase", "User level: " + userLevel + "userId: " + userId);
+                    } else {
+                        Log.w("Firebase", "User does not exist.");
+                    }
+                });
+
         return view;
     }
+    private void objRecyclerView(View view, int userLevel) {
+        recyclerView = view.findViewById(R.id.rv_obj);
+        Button btnAll = view.findViewById(R.id.btn_all);
+        Button btnMine = view.findViewById(R.id.btn_mine);
 
-    private void updateRabbitImage(View view) {
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+
+        allItems = new ArrayList<>();
+        allItems.add(new Item("Flowers", 20, R.drawable.flowers_obj));
+        allItems.add(new Item("Basket", 50, R.drawable.basket_obj));
+        allItems.add(new Item("Ball", 50, R.drawable.ball_obj));
+        allItems.add(new Item("Chick", 70, R.drawable.chick_obj));
+        allItems.add(new Item("Bird", 90, R.drawable.bird_obj));
+
+        userItems = new ArrayList<>();
+        for (Item item : allItems) {
+            if (userLevel >= item.getLevelRequirement()) {
+                userItems.add(item);
+            }
+        }
+
+        updateRecyclerView(allItems);
+
+        btnAll.setOnClickListener(v -> updateRecyclerView(allItems));
+        btnMine.setOnClickListener(v -> updateRecyclerView(userItems));
+    }
+    private void updateRecyclerView(List<Item> items) {
+        RecyclerView.Adapter<ItemViewHolder> adapter = new RecyclerView.Adapter<>() {
+            @NonNull
+            @Override
+            public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.obj_item, parent, false);
+                return new ItemViewHolder(view);
+            }
+
+            @Override
+            public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+                Item item = items.get(position);
+                holder.imageView.setImageResource(item.getImageResId());
+                holder.textView.setText(item.getName());
+            }
+
+            @Override
+            public int getItemCount() {
+                return items.size();
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+    }
+
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        TextView textView;
+
+        public ItemViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.item_image);
+            textView = itemView.findViewById(R.id.item_name);
+        }
+    }
+    private void updateRabbitImage(View view, int level) {
         String userId = Objects.requireNonNull(SessionManager.getCurrentUser()).getUserId();
 
         userRef.addValueEventListener(new ValueEventListener() {
@@ -50,8 +144,6 @@ public class RabbitFragment extends Fragment {
                 }
 
                 if (totalTasks > 0) {
-                    Integer levelInteger = snapshot.child(userId).child("level").getValue(Integer.class);
-                    int level = Objects.requireNonNullElse(levelInteger, 0);
                     double completionRate = (double) completedTasks / totalTasks * 100;
                     updateRabbitImageDrawable(completionRate, level, view);
                 }

@@ -2,18 +2,106 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
+    android:background="@color/bunny_bg"
     tools:context=".RabbitFragment">
 
     <ImageView
         android:id="@+id/iv_bunny"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="0dp"
+        android:layout_height="410dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/happy_rank_0" />
+
+    <TextView
+        android:id="@+id/tv_lvl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lvl_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/default_round_background"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/progress_bar"
+        android:progressTint="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_lvl"
+        app:layout_constraintStart_toEndOf="@+id/tv_lvl"
+        app:layout_constraintTop_toTopOf="@+id/tv_lvl" />
+
+    <LinearLayout
+        android:id="@+id/ll_obj_all"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ll_obj_bg"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_bunny">
+
+        <LinearLayout
+            android:id="@+id/ll_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_all"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/obj_green"
+                android:text="@string/all_obj"
+                android:textColor="#FFFFFF"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/btn_mine"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/obj_green"
+                android:text="@string/mine_obj"
+                android:textColor="#FFFFFF"
+                tools:ignore="ButtonStyle" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/obj_green" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_obj"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:padding="8dp"
+            android:scrollbars="none" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

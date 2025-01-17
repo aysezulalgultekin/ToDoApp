@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment {
     private final DatabaseReference userDatabaseReference = FirebaseDatabase.getInstance().getReference("Users");
     private final boolean isChecked = false;
     private TextView tvCompletedTasks, tvLevel, tvRabbitMood;
-    private final int userLevel = 0;
     private int level;
 
     @SuppressLint("MissingInflatedId")

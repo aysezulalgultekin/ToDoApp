@@ -82,5 +82,7 @@
     <string name="normal_bunny"> is Okay :/</string>
     <string name="sad_bunny"> is Sad :(</string>
     <string name="bunny_name_error">Please enter a name!</string>
+    <string name="all_obj">All</string>
+    <string name="mine_obj">Mine</string>
 
 </resources>
